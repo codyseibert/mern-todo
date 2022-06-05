@@ -1,0 +1,39 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item input[type='checkbox'] {
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.item input[type='text'] {
+  height: 20px;
+  margin-right: 10px;
+  padding: 5px;
+  width: 300px;
+}
+
+.item button {
+  color: white;
+  height: 26px;
+  cursor: pointer;
+  /* remove button decoration */
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+
+.item button svg {
+  position: relative;
+  top: 2px;
+}
+
+.item button:hover {
+  color: red;
+}
