@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const router = require('./router');
 
@@ -15,4 +16,7 @@ app.use(morgan('tiny'));
 
 app.use(router);
 
-app.listen(8080);
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log('starting on port 8080');
+  app.listen(8080);
+})
