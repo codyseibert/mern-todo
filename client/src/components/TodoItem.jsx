@@ -53,10 +53,22 @@ export const TodoItem = ({ todo }) => {
   }, [text]);
 
   return (
-    <div>
+    <div
+      style={{
+        marginBottom: '6px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <input
         checked={todo.completed}
         type="checkbox"
+        style={{
+          marginRight: '5px',
+          height: '34px',
+          width: '34px',
+        }}
         onChange={() =>
           updateTodo({
             ...todo,
@@ -66,12 +78,26 @@ export const TodoItem = ({ todo }) => {
       />
 
       <input
+        style={{
+          padding: '8px',
+          marginRight: '6px',
+        }}
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
 
-      <button onClick={() => deleteTodo(todo)}>
+      <button
+        style={{
+          padding: '5px',
+          height: '35px',
+          outline: 'none',
+          border: 'none',
+          color: 'white',
+          backgroundColor: '#cc5a5a',
+        }}
+        onClick={() => deleteTodo(todo)}
+      >
         delete
       </button>
     </div>
