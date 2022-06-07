@@ -1,6 +1,6 @@
-import { API_URL, token } from "./config"
+import { API_URL } from "./config"
 
-export default (todo) => {
+export default (todo, token) => {
   return fetch(`${API_URL}/todos/${todo._id}`, {
     method: 'DELETE',
     headers: {

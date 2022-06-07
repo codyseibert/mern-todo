@@ -2,6 +2,7 @@ import React, {
   useCallback,
   useState,
   useEffect,
+  useContext,
 } from 'react';
 import {
   useQueryClient,
@@ -11,14 +12,16 @@ import {
 import deleteTodoRequest from '../api/deleteTodoRequest';
 import updateTodoRequest from '../api/updateTodoRequest';
 import { debounce } from 'lodash';
+import { TokenContext } from '../App';
 
 export const TodoItem = ({ todo }) => {
   const [text, setText] = useState(todo.text);
+  const [token] = useContext(TokenContext);
 
   const queryClient = useQueryClient();
 
   const { mutate: updateTodo } = useMutation(
-    (updatedTodo) => updateTodoRequest(updatedTodo),
+    (updatedTodo) => updateTodoRequest(updatedTodo, token),
     {
       onSettled: () => {
         queryClient.invalidateQueries('todos');
@@ -27,7 +30,7 @@ export const TodoItem = ({ todo }) => {
   );
 
   const { mutate: deleteTodo } = useMutation(
-    (updatedTodo) => deleteTodoRequest(updatedTodo),
+    (updatedTodo) => deleteTodoRequest(updatedTodo, token),
     {
       onSettled: () => {
         queryClient.invalidateQueries('todos');
